@@ -4,4 +4,6 @@ This repository produces the link between cik and cusip using EDGAR 13D and 13G 
 
 dl_13D_13G.py will download all existing 13D and 13G
 
-get_cusip_cik.py will produce a csv file that contains the links.
+produce_links.ipynb will produce a csv file that contains the links.
+
+To download latest link file, go to https://bit.ly/2sCWKyR
