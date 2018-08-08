@@ -1,4 +1,5 @@
-# cik-cusip mapping
+# cik-cusip mapping (This repository is no longer maintained, please do not use it)
+
 
 (This repository is no longer maintained, please do not use it)
 
