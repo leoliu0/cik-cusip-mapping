@@ -10,7 +10,7 @@ dl.py will download a certain type of filing, check form_type.txt for available 
 ```python
 dl.py 13G 13G # this will download all 13G (second 13G) filing into 13G (first 13G) folder
 ```
+```python
+parse_cusip.py 13G # this will process all files in 13G directory, creating a file called 13G.csv with filing name, cik, cusip number.
+```
 
-When you use this file, you should do a "left join" to your compustat (or other) datasets to exclude unnecessary links I created during clean process. As long as you do not create cik-fyear pairs that are not in the original datasets, it is fine.
-
-To download latest mapping file, go to https://bit.ly/2HhZS8G
