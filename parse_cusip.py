@@ -8,6 +8,7 @@ from multiprocessing import Pool
 files = sys.argv[1]
 # pat = re.compile('[\( >][0-9A-Z]{1}[0-9]{4}[0-9A-Z]{1}\s*[0-9]{0,2}\s*[0-9]{0,1}[\) \n<]')
 pat = re.compile('[\( >][0-9A-Z]{1}[0-9]{3}[0-9A-Za-z]{2}[- ]*[0-9]{0,2}[- ]*[0-9]{0,1}[\) \n<]')
+w = re.compile('\w+')
 
 def parse(file):
     with open(file,'r') as f:
@@ -37,6 +38,7 @@ def parse(file):
         cusip=None
     else:
         cusip = Counter(cusips).most_common()[0][0]
+        cusip = ''.join(w.findall(cusip))
 
     return [file,cik,cusip]
 
