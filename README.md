@@ -13,6 +13,12 @@ dl.py 13G 13G # this will download all 13G (second 13G) filing into 13G (first 1
 ```python
 parse_cusip.py 13G # this will process all files in 13G directory, creating a file called 13G.csv with filing name, cik, cusip number.
 ```
-Well, if you do not care obtaining the original data, just download cik-cusip-maps.csv, it has the mapping without timestamp information, but should be good if you use it for merging databases. Please deal with duplications yourself.
+Finally, you can clean the resulting csv files and get the mapping
+```python
+post_proc.py 13G.csv 13D.csv
+# This will process both 13G.csv and 13D.csv and generate the mapping file
+```
+
+If you do not care obtaining the original data, just download cik-cusip-maps.csv, it has the mapping without timestamp information, but should be good if you use it for merging databases. Please deal with duplications yourself.
 
 The reason why I do not provide timestamp is because there will be truncations due to timing of the filings. For example, when filings are filed in 2005 and 2007 for a link, I can only see the link in 2005 and 2007, but the link should be valid in 2006 too. One way to fix this is to interpolate the link to 2006. However, when filing ends in 2006, we do not know when should the link is valid to and how long after we should extrapolate, i.e. One could extrapolate to 2020 but we do not know the true date the link ends. This is arbitrary choice of the user, therefore I remove the timestamp for you to deal with yourself. For database merging purpose, this should be fine because two databases you are merging should have timestamp and it's rare for duplicated links to exist at some given time.
