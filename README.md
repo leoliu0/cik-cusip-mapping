@@ -8,14 +8,14 @@ dl_idx.py will download the EDGAR index file containing addresses for each filin
 
 dl.py will download a certain type of filing, check form_type.txt for available filing types. for example,
 ```python
-dl.py 13G 13G # this will download all 13G (second 13G) filing into 13G (first 13G) folder
+python dl.py 13G 13G # this will download all 13G (second 13G) filing into 13G (first 13G) folder
 ```
 ```python
-parse_cusip.py 13G # this will process all files in 13G directory, creating a file called 13G.csv with filing name, cik, cusip number.
+python parse_cusip.py 13G # this will process all files in 13G directory, creating a file called 13G.csv with filing name, cik, cusip number.
 ```
 Finally, you can clean the resulting csv files and get the mapping
 ```python
-post_proc.py 13G.csv 13D.csv
+python post_proc.py 13G.csv 13D.csv
 # This will process both 13G.csv and 13D.csv and generate the mapping file
 ```
 
