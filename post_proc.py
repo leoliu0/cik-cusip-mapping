@@ -14,6 +14,7 @@ df = df[(df.leng == 6) | (df.leng == 8) | (df.leng == 9)]
 df['cusip6'] = df.cusip.str[:6]
 
 df['cusip8'] = df.cusip.str[:8]
+
 df.cik = pd.to_numeric(df.cik)
 
 df = df[['cik', 'cusip6',
