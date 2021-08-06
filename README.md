@@ -1,5 +1,7 @@
 # cik-cusip mapping
 
+*** If you just want the mapping, download cik-cusip-maps.csv ***
+
 This repository produces the link between cik and cusip using EDGAR 13D and 13G fillings, that is more robust than Compustat (due to backward filling of new cusip to old records). It is a competitor to WRDS SEC platform while this one is free.
 
 This is written in python36+, I don't provide a requirement file and I only use very common libraries, if you run into Module not Found problem, just pip install them, e.g. Pandas
