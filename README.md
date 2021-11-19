@@ -6,7 +6,7 @@ This repository produces the link between cik and cusip using EDGAR 13D and 13G 
 
 This is written in python36+, I don't provide a requirement file and I only use very common libraries, if you run into Module not Found problem, just pip install them, e.g. Pandas
 
-dl_idx.py will download the EDGAR index file containing addresses for each filing.
+dl_idx.py will download the EDGAR index file containing addresses for each filing, i.e. full_index.csv is generated
 
 dl.py will download a certain type of filing, check form_type.txt for available filing types. for example,
 ```python
