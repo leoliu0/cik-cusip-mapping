@@ -2,6 +2,7 @@
 import argparse
 import csv
 import os
+from pathlib import Path
 
 import pandas as pd
 import requests
@@ -17,39 +18,33 @@ if __name__ == "__main__":
     filing = args.filing
     folder = args.folder
 
-    full = pd.read_csv("full_index.csv", encoding="latin1")
+    to_dl = []
+    with open("full_index.csv", "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if filing in row["form"]:
+                to_dl.append(row)
 
-    form = full[full.form.str.contains(filing)]
-
-    len_ = len(form)
+    len_ = len(to_dl)
     print(len_)
     print("start to download")
 
-    try:
-        os.mkdir(folder)
-    except:
-        pass
-
-    for n, row in enumerate(form.values):
+    for n, row in enumerate(to_dl):
         print(f"{n} out of {len_}")
-        cik = row[0]
-        firm = row[1]
-        date = row[3]
-        year = date.split("-")[0]
-        month = date.split("-")[1]
-        url = row[4].strip()
-        try:
-            os.mkdir(f"./{folder}/{year}_{month}")
-        except:
-            pass
-        if os.path.exists(f"./{folder}/{year}_{month}/{cik}_{date}.html"):
+        cik = row["cik"].strip()
+        date = row["date"].strip()
+        year = row["date"].split("-")[0].strip()
+        month = row["date"].split("-")[1].strip()
+        url = row["url"].strip()
+        Path(f"./{folder}/{year}_{month}").mkdir(parents=True, exist_ok=True)
+        if os.path.exists(f"./{folder}/{year}_{month}/{cik}_{date}.txt"):
             continue
         try:
             txt = requests.get(
                 f"https://www.sec.gov/Archives/{url}", headers=user_agent, timeout=60
             ).text
             with open(
-                f"./{folder}/{year}_{month}/{cik}_{date}.html", "w", errors="ignore"
+                f"./{folder}/{year}_{month}/{cik}_{date}.txt", "w", errors="ignore"
             ) as f:
                 f.write(txt)
         except:
