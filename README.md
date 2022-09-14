@@ -8,6 +8,10 @@ This is written in python36+, I don't provide a requirement file and I only use 
 
 dl_idx.py will download the EDGAR index file containing addresses for each filing, i.e. full_index.csv is generated
 
+```
+python dl_idx.py
+```
+
 dl.py will download a certain type of filing, check form_type.txt for available filing types. for example,
 ```python
 python dl.py 13G 13G # this will download all 13G (second 13G) filing into 13G (first 13G) folder
