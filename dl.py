@@ -36,16 +36,16 @@ if __name__ == "__main__":
         year = row["date"].split("-")[0].strip()
         month = row["date"].split("-")[1].strip()
         url = row["url"].strip()
+        accession = url.split(".")[0].split("-")[-1]
         Path(f"./{folder}/{year}_{month}").mkdir(parents=True, exist_ok=True)
-        if os.path.exists(f"./{folder}/{year}_{month}/{cik}_{date}.txt"):
+        file_path = f"./{folder}/{year}_{month}/{cik}_{date}_{accession}.txt"
+        if os.path.exists(file_path):
             continue
         try:
             txt = requests.get(
                 f"https://www.sec.gov/Archives/{url}", headers=user_agent, timeout=60
             ).text
-            with open(
-                f"./{folder}/{year}_{month}/{cik}_{date}.txt", "w", errors="ignore"
-            ) as f:
+            with open(file_path, "w", errors="ignore") as f:
                 f.write(txt)
         except:
             print(f"{cik}, {date} failed to download")
