@@ -1,5 +1,7 @@
 # cik-cusip mapping
 
+## I decided not to maintain this repo as there are good forks that continue what I do here
+
 *** If you just want the mapping, download cik-cusip-maps.csv ***
 
 This repository produces the link between cik and cusip using EDGAR 13D and 13G fillings, that is more robust than Compustat (due to backward filling of new cusip to old records). It is a competitor to WRDS SEC platform while this one is free.
